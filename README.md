@@ -39,14 +39,14 @@ Non-Windows platforms have been considered in the code, but no testing has been 
 The application creates the necessary databases at runtime as requested.
 There is no need to run `Update-Database` unless the application is nonoperational.
 
-New migrations are added using `IDesignTimeDbContextFactory` using the following commands:
+New migrations are added using Entity Framework's `IDesignTimeDbContextFactory` using the following command:
 
 ```bat
 Add-Migration -Context [context name] [migration name]
 ```
 
 ```sh
-# Linux
+# for Linux
 dotnet ef migrations add [migration name] --context [context name]
 ```
 
@@ -78,7 +78,7 @@ These values are valid for `AutoConnect.Type`:
 "Type": "sqlsever"
 ```
 
-# Exchange rate API
+# Exchange Rate API
 
 AssetInventory uses a database-backed cache to reduce the number of calls to the exchange rate API but it is still possible to hit this limit.
 Please read their [Terms](https://www.exchangerate-api.com/terms) and add your API key in the configuration file as detailed above and restart the program to avoid being rate limited.
