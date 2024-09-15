@@ -6,37 +6,40 @@ This is a beginner terminal app written in C# which uses these dependencies:
 - Spectre.Console
 
 This terminal app supports three different EF Core database providers:
-- InMemory
-- SqlServer
+- Microsoft SQL Server
 - SQLite
+- Entity Framework Core InMemory
 
 ![Short demonstration video](demo.avif)
-
-If the `InMemory` database provider causes problems, use SQLite in-memory by navigating to `create` then `memory`.
-
-The project is about 90% complete.
 
 ## Running
 
 Simply compile and run the program to get started and create a database.
 
-It's possible to run multiple instances of the application at once even using SQLite. Remember to configure permissions and authentication in SQL Server for your users. Read-only configurations are not supported.
+It's possible to run multiple instances of the application at once even using SQLite.
+
+If the `InMemory` database provider causes problems (it won't), use SQLite in-memory by navigating to `create` then `memory`.
 
 ## Connecting to a remote Microsoft SQL Server DBMS
 
 Add the [connection string](https://learn.microsoft.com/en-us/ef/core/miscellaneous/connection-strings) to the configuration file.
 
+Remember to configure appropriate permissions and authentication in SQL Server if you have problems connecting. Read-only configurations are not supported.
+
 ## Building
 
-Visual Studio Community 2022
-Windows 10 or Windows 11
-.NET 8 with C# 12
+- Windows 10 or Windows 11
+- Visual Studio Community 2022
+- .NET 8 with C# 12
 
 Non-Windows platforms have been considered in the code, but no testing has been done.
+
+The project is about 90% complete.
 
 ## Migrations
 
 The application creates the necessary databases at runtime as requested.
+
 There is no need to run `Update-Database` unless the application is nonoperational.
 
 New migrations are added using Entity Framework's `IDesignTimeDbContextFactory` using the following command:
@@ -54,9 +57,10 @@ We do not provide support for `efbundle`.
 
 ## Configuration file
 
-AssetInventory will look for `appsettings.json` in the _current working directory_ and load it upon startup.
+AssetInventory will look for `appsettings.json` in the _current working directory_ and load it upon startup. AssetInventory writes to this file. Use the interface to make configuration changes.
+
 > [!WARNING]
-> JSON files may ***not*** contain comments.
+> This JSON file may ***not*** contain comments.
 
 ```json
 {
